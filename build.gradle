@@ -1,0 +1,73 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.6.8'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "io.freefair.lombok" version "6.6.1"
+}
+
+group 'com.oauth.client.system'
+version '1.0'
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+
+	// import BOM
+	implementation platform('software.amazon.awssdk:bom:2.15.0')
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.session:spring-session-jdbc'
+	implementation 'mysql:mysql-connector-java:8.0.31'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3'
+	implementation group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.4.6'
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' // Junit4 호환제거
+	}
+
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+
+	// email 관련 의존성 (springboot starter, aws sdk)
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'software.amazon.awssdk:ses'
+	implementation 'software.amazon.awssdk:sns' // We only need to get SNS SDK in our case
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-messaging', version: '2.2.1.RELEASE'
+	implementation 'software.amazon.awssdk:apache-client'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+
+	implementation 'net.nurigo:sdk:4.2.7'
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation 'commons-io:commons-io:2.11.0'
+	// 세금계산서 popbill 연동
+	implementation 'kr.co.linkhub:popbill-spring-boot-starter:1.8.1'
+
+	// Excel 출력 라이브러리
+	implementation 'org.apache.poi:poi:5.2.2'
+	implementation 'org.apache.poi:poi-ooxml:5.2.2'
+
+	implementation 'org.apache.commons:commons-lang3:3.10'
+
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+
+	//sqs
+	implementation 'software.amazon.awssdk:sqs'
+	implementation 'org.modelmapper:modelmapper:3.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'  // OAuth2 클라이언트 지원
+
+}
+
+
